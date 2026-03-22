@@ -1,0 +1,5 @@
+__pycache__
+cache
+venv
+*/docker/mosquitto/data/
+*/docker/mosquitto/log/

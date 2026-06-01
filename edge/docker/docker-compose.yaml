@@ -122,6 +122,24 @@ services:
     networks:
       - mqtt_network
 
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=root
+      - GF_SECURITY_ADMIN_PASSWORD=root
+      - GF_INSTALL_PLUGINS=grafana-worldmap-panel 
+    volumes:
+      - grafana_data:/var/lib/grafana
+    depends_on:
+      - postgres_db
+    networks:
+      - edge_hub
+      - hub_store
+      - db_network
+
 networks:
   mqtt_network:
   db_network:
@@ -132,3 +150,4 @@ networks:
 volumes:
   postgres_data:
   pgadmin-data:
+  grafana_data:
